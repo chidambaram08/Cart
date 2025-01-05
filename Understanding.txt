@@ -1,0 +1,5 @@
+npm run seeder
+
+rfce
+
+ --legacy-peer-deps
