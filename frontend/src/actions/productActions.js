@@ -5,6 +5,7 @@ import {
   productsSuccess,
 } from "../slices/productsSlice";
 import {
+  createReviewRequest,
   productFail,
   productRequest,
   productSuccess,
@@ -43,6 +44,16 @@ export const getProduct =  id => async (dispatch) => {
   try {
     dispatch(productRequest());
     const { data } = await axios.get(`/api/v1/product/${id}`);
+    dispatch(productSuccess(data));
+  } catch (error) {
+    dispatch(productFail(error.response.data.message));
+  }
+};
+
+export const createReview =  reviewData => async (dispatch) => {
+  try {
+    dispatch(createReviewRequest());
+    const { data } = await axios.put(`api/v1/review`);
     dispatch(productSuccess(data));
   } catch (error) {
     dispatch(productFail(error.response.data.message));
